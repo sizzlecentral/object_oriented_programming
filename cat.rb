@@ -22,17 +22,21 @@ class Cat
   end
 
   def eats_at
-    @eats_at
     if @meal_time == 0
-      return "12am"
+      "12am"
     elsif @meal_time == 12
-      return "12pm"
+      "12pm"
     elsif @meal_time <= 11
-      return "#{@meal_time}am"
+      "#{@meal_time}am"
     else
-      return "#{@meal_time - 12}pm"
+      "#{@meal_time - 12}pm"
     end
   end
+
+  def meow
+    "My name is #{name} and I eat #{preferred_food} at #{eats_at}."
+  end
+
 
 end
 
@@ -42,3 +46,6 @@ marvin = Cat.new("Marvin", "Friskies", 7)
 smoky = Cat.new("Smoky", "Fancy Feast", 12)
 
 puts smoky.eats_at
+puts marvin.eats_at
+puts marvin.meow
+puts smoky.meow
