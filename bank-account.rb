@@ -17,17 +17,24 @@ class BankAccount
   end
 
   def deposit(amount)
-    @amount = amount
-    @balance += @amount
+    @deposit = amount
+    @balance += @deposit
   end
 
+  def withdraw(amount)
+    @withdraw = amount
+    @balance -= @withdraw
+  end
 
-
-
+  def gain_interest
+    @gain_interest = @balance * (@interest_rate * 0.01)
+    puts "Annual interest on your current balance would be $#{@gain_interest}."
+  end
 end
 
 # --- End of BankAccount class --- #
 
 chequing = BankAccount.new(0, 5)
-chequing.deposit(20)
-puts chequing.balance
+chequing.deposit(110)
+chequing.withdraw(10)
+puts chequing.gain_interest
