@@ -3,6 +3,8 @@
 
 class Player
 
+  attr_accessor :gold_coins, :health_points, :lives, :level_up, :collect_treasure
+
   def initialize
     @gold_coins = 0
     @health_points = 10
@@ -26,7 +28,11 @@ class Player
   end
 
   def collect_treasure
-    @collect_treasure = @gold_coins += 1
+    if @gold_coins % 10 == 0
+      level_up
+    else
+      @collect_treasure = @gold_coins += 1
+    end
   end
 
 
@@ -36,6 +42,13 @@ end
 # ----- End of Player class ----- #
 
 player1 = Player.new
-player1.level_up
+# player1.level_up
+# puts player1.lives
+
+# player1.collect_treasure
+# puts player1.gold_coins
+
+player1.gold_coins = 10
+player1.collect_treasure
+puts player1.gold_coins
 puts player1.lives
-puts player1.collect_treasure
