@@ -12,18 +12,30 @@ class Player
   end
 
   def gold_coins
-    @gold_coins
+    if @lives == 0
+      restart
+    # else
+      # @gold_coins
+    end
   end
 
   def health_points
-    if @health_points < 1
+    if lives == 0
+      restart
+    elsif @health_points < 1
       @lives -= 1
       @health_points = 10
+    else
+      @health_points
     end
   end
 
   def lives
-    @lives
+    if @lives == 0
+      restart
+    else
+      @lives
+    end
   end
 
   def level_up
@@ -42,7 +54,11 @@ class Player
     @health_points -= damage
   end
 
-
+  def restart
+    @lives = 5
+    @health_points = 10
+    @gold_coins = 0
+  end
 
 end
 
@@ -63,6 +79,14 @@ player1 = Player.new
 # player1.do_battle(4)
 # puts player1.health_points
 
-player1.health_points = 0
-puts player1.health_points
-puts player1.lives
+# player1.health_points = 0
+# puts player1.health_points
+# puts player1.lives
+
+# player1.gold_coins = 12
+# player1.health_points = 5
+# player1.lives = 0
+#
+# puts player1.gold_coins
+# puts player1.health_points
+# puts player1.lives
