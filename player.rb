@@ -3,7 +3,7 @@
 
 class Player
 
-  attr_accessor :gold_coins, :health_points, :lives, :level_up, :collect_treasure
+  attr_accessor :gold_coins, :health_points, :lives, :level_up, :collect_treasure, :do_battle
 
   def initialize
     @gold_coins = 0
@@ -16,7 +16,10 @@ class Player
   end
 
   def health_points
-    @health_points
+    if @health_points < 1
+      @lives -= 1
+      @health_points = 10
+    end
   end
 
   def lives
@@ -35,6 +38,10 @@ class Player
     end
   end
 
+  def do_battle(damage)
+    @health_points -= damage
+  end
+
 
 
 end
@@ -48,7 +55,14 @@ player1 = Player.new
 # player1.collect_treasure
 # puts player1.gold_coins
 
-player1.gold_coins = 10
-player1.collect_treasure
-puts player1.gold_coins
+# player1.gold_coins = 10
+# player1.collect_treasure
+# puts player1.gold_coins
+# puts player1.lives
+
+# player1.do_battle(4)
+# puts player1.health_points
+
+player1.health_points = 0
+puts player1.health_points
 puts player1.lives
