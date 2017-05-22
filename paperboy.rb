@@ -18,7 +18,11 @@ class Paperboy
   end
 
   def deliver(start_address, end_address)
-    @deliver = (end_address - start_address + 1)
+    if end_address > start_address
+      @deliver = (end_address - start_address + 1)
+    else
+      @deliver = (start_address - end_address + 1)
+    end
   end
 
   def experience
@@ -57,7 +61,7 @@ end
 
 tommy = Paperboy.new("Tommy")
 
-tommy.deliver(101, 160)
+tommy.deliver(160, 101)
 puts tommy.report
 
 tommy.quota
