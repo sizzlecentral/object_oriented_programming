@@ -15,10 +15,6 @@ class Paperboy
     @name
   end
 
-  def quota
-    @quota
-  end
-
   def deliver(start_address, end_address)
     @deliver = (end_address - start_address + 1)
   end
@@ -33,6 +29,14 @@ class Paperboy
     end
   end
 
+  def quota
+    if @deliver > @quota
+      @quota += (@deliver * 0.5)
+    else
+      @quota
+    end
+  end
+
   def report
     @report
   end
@@ -43,5 +47,6 @@ end
 # ----- End of Paperboy class ----- #
 
 tommy = Paperboy.new("Tommy")
-tommy.deliver(101, 120)
+tommy.deliver(101, 160)
 puts tommy.earnings
+puts tommy.quota
