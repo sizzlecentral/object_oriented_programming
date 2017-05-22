@@ -9,6 +9,8 @@ class Paperboy
   def initialize(name)
     @name = name
     @quota = 50
+    @experience = 0
+    @experience_earnings = 0
   end
 
   def name
@@ -17,6 +19,18 @@ class Paperboy
 
   def deliver(start_address, end_address)
     @deliver = (end_address - start_address + 1)
+  end
+
+  def experience
+    @experience += @deliver
+  end
+
+  def quota
+    if @deliver > @quota
+      @quota += (@deliver * 0.5)
+    else
+      @quota
+    end
   end
 
   def earnings
@@ -29,24 +43,24 @@ class Paperboy
     end
   end
 
-  def quota
-    if @deliver > @quota
-      @quota += (@deliver * 0.5)
-    else
-      @quota
-    end
+  def experience_earnings
+    @experience_earnings += earnings
   end
 
   def report
-    @report
+    @report = "I'm #{@name}, I've delivered #{experience} papers and I've earned $#{experience_earnings} so far!"
   end
-
 
 end
 
 # ----- End of Paperboy class ----- #
 
 tommy = Paperboy.new("Tommy")
+
 tommy.deliver(101, 160)
-puts tommy.earnings
-puts tommy.quota
+puts tommy.report
+
+tommy.quota
+
+tommy.deliver(1, 75)
+puts tommy.report
